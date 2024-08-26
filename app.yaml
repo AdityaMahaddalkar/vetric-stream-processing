@@ -1,0 +1,4 @@
+flink:
+  bootstrap.servers: 'localhost:9092'
+  group.id: 'tweets-group'
+  topic: 'tweets'
