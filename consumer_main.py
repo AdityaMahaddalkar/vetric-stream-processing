@@ -15,3 +15,8 @@ class ConsumerRunner:
             self.consumer.process_tweets_from_flink()
         except Exception as e:
             logging.error(f'Exception occurred while consuming tweets and sentiment analysis = {e}')
+
+
+if __name__ == '__main__':
+    runner = ConsumerRunner()
+    runner.run()
