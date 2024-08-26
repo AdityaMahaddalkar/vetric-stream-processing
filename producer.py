@@ -1,4 +1,5 @@
 import json
+import logging
 
 from pyflink.common import Types
 from pyflink.datastream import StreamExecutionEnvironment
@@ -23,7 +24,9 @@ class StreamProducer:
             }
         )
 
-    def send_tweets_to_flink(self, tweet_text):
-        ds = self.env.from_collection([json.dumps(tweet) for tweet in tweet_text])
+    def send_tweets_to_flink(self, tweet_text_list):
+        logging.info(f'Trying to send #{len(tweet_text_list)} tweets')
+
+        ds = self.env.from_collection([json.dumps(tweet) for tweet in tweet_text_list])
         ds.add_sink(self.producer)
         self.env.execute()
